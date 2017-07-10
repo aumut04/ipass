@@ -78,6 +78,7 @@
 						<th>ActiviteitID</th>
 						<th>ActiviteitNaam</th>
 						<th>Omschrijving</th>
+						<th>Status</th>
 						<th>Gezinslid</th>
 					</tr>
 				</c:otherwise>
@@ -87,6 +88,7 @@
 					<td>${Activiteit.activiteitID}</td>
 					<td>${Activiteit.activiteitNaam}</td>
 					<td>${Activiteit.omschrijving}</td>
+					<td>${Activiteit.status}</td>
 					<td>${loggedGezinslid.gezinslidNaam}</td>
 				</tr>
 			</c:forEach>

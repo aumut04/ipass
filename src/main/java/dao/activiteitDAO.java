@@ -21,11 +21,13 @@ public class activiteitDAO extends baseDAO {
 				int activiteitID = dbResultSet.getInt("activiteitID");
 				String activiteitNaam = dbResultSet.getString("activiteitNaam");
 				String omschrijving = dbResultSet.getString("omschrijving");
+				String status = dbResultSet.getString("status");
 				int BSN = dbResultSet.getInt("bsn");
 				String gezinslidNaam = dbResultSet.getString("gezinslidNaam");
 				String gezinslidWachtwoord = dbResultSet.getString("wachtwoord");
 				Gezinslid gezinslid = new Gezinslid(BSN, gezinslidNaam, gezinslidWachtwoord);
 				newAct = new Activiteit(activiteitID, activiteitNaam, omschrijving, gl);
+				newAct.setStatus(status);
 				results.add(newAct);
 			}
 		} catch (SQLException sqle) {
@@ -36,7 +38,7 @@ public class activiteitDAO extends baseDAO {
 
 	public Gezinslid getAlleActiviteitenGezinslid(Gezinslid gl) {
 		gl.setActiviteiten(selectActiviteiten(
-				"SELECT a.activiteitID, a.activiteitNaam, a.omschrijving, gl.bsn, gl.gezinslidNaam, gl.wachtwoord  FROM activiteit a, gezinslid gl, gezinslidactiviteit gla WHERE gla.fk_bsn = gl.bsn and gla.fk_activiteitID = a.activiteitID and gl.bsn = ?;",
+				"SELECT a.activiteitID, a.activiteitNaam, a.omschrijving, gla.status, gl.bsn, gl.gezinslidNaam, gl.wachtwoord  FROM activiteit a, gezinslid gl, gezinslidactiviteit gla WHERE gla.fk_bsn = gl.bsn and gla.fk_activiteitID = a.activiteitID and gl.bsn = ?;",
 				gl.getBSN()));
 		return gl;
 	}
@@ -53,11 +55,13 @@ public class activiteitDAO extends baseDAO {
 				int activiteitID = dbResultSet.getInt("activiteitID");
 				String activiteitNaam = dbResultSet.getString("activiteitNaam");
 				String omschrijving = dbResultSet.getString("omschrijving");
+				String status = dbResultSet.getString("status");
 				int BSN = dbResultSet.getInt("bsn");
 				String gezinslidNaam = dbResultSet.getString("gezinslidNaam");
 				String gezinslidWachtwoord = dbResultSet.getString("wachtwoord");
 				Gezinslid gl = new Gezinslid(bsn, gezinslidNaam, gezinslidWachtwoord);
 				newAct = new Activiteit(activiteitID, activiteitNaam, omschrijving, gl);
+				newAct.setStatus(status);
 				results.add(newAct);
 			}
 		} catch (SQLException sqle) {
@@ -75,7 +79,7 @@ public class activiteitDAO extends baseDAO {
 			while (dbResultSet.next()) {
 				int activiteitID = dbResultSet.getInt("activiteitID");
 				String activiteitNaam = dbResultSet.getString("activiteitNaam");
-				String omschrijving = dbResultSet.getString("omschrijving");				
+				String omschrijving = dbResultSet.getString("omschrijving");
 				newAct = new Activiteit(activiteitID, activiteitNaam, omschrijving);
 				results.add(newAct);
 			}

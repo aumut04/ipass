@@ -4,6 +4,7 @@ public class Activiteit {
 	private int activiteitID;
 	private String activiteitNaam;
 	private String omschrijving;
+	private String status;
 
 	public Activiteit() {
 	}
@@ -12,6 +13,7 @@ public class Activiteit {
 		super();
 		this.activiteitNaam = actNaam;
 		this.omschrijving = oms;
+		this.status = status;
 	}
 	
 	public Activiteit(int aID, String actNaam, String oms) {
@@ -19,6 +21,7 @@ public class Activiteit {
 		this.activiteitID = aID;
 		this.activiteitNaam = actNaam;
 		this.omschrijving = oms;
+		this.status = status;
 	}
 
 	public Activiteit(int aID, String actNaam, String oms, Gezinslid gl) {
@@ -26,6 +29,7 @@ public class Activiteit {
 		this.activiteitID = aID;
 		this.activiteitNaam = actNaam;
 		this.omschrijving = oms;
+		this.status = status;
 	}
 
 	public int getActiviteitID() {
@@ -46,5 +50,13 @@ public class Activiteit {
 
 	public void setOmschrijving(String oms) {
 		this.omschrijving = oms;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
 	}
 }
