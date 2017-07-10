@@ -124,22 +124,47 @@ public class activiteitDAO extends baseDAO {
 
 	public void wijzigActiviteit(Activiteit a, Gezinslid gl, String activiteitnaam) {
 		try (Connection con = super.getConnection()) {
-			String updateString = "UPDATE Activiteit SET activiteitnaam = ?, omschrijving = ? WHERE activiteitnaam = ?";
+			String updateString = "UPDATE Activiteit SET activiteitnaam = ?, omschrijving = ? WHERE activiteitID = ?";
 			PreparedStatement stmt = con.prepareStatement(updateString);
 			stmt.setString(1, a.getActiviteitNaam());
 			stmt.setString(2, a.getOmschrijving());
-			stmt.setString(3, activiteitnaam);
+			stmt.setInt(3, a.getActiviteitID());
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
 		}
 	}
 
-	public void verwijderAct(String activiteitNaam) {
+	public void verwijderAct(int activiteitID) {
 		try (Connection con = super.getConnection()) {
-			String updateString = "DELETE FROM activiteit WHERE activiteitNaam = ?";
+			String updateString = "DELETE FROM activiteit WHERE activiteitID = ?";
 			PreparedStatement stmt = con.prepareStatement(updateString);
-			stmt.setString(1, activiteitNaam);
+			stmt.setInt(1, activiteitID);
+			stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+	}
+
+	public void wijzigActiviteitGezinslid(int aID, int bsn, String status) {
+		try (Connection con = super.getConnection()) {
+			String updateString = "UPDATE gezinslidactiviteit SET status = ? WHERE fk_bsn = ? and fk_activiteitid = ?";
+			PreparedStatement stmt = con.prepareStatement(updateString);
+			stmt.setString(1, status);
+			stmt.setInt(2, bsn);
+			stmt.setInt(3, aID);
+			stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+	}
+	
+	public void verwijderActGL(int activiteitID, int bsn) {
+		try (Connection con = super.getConnection()) {
+			String updateString = "DELETE FROM gezinslidactiviteit WHERE fk_bsn = ? and fk_activiteitid = ?";
+			PreparedStatement stmt = con.prepareStatement(updateString);
+			stmt.setInt(1, bsn);
+			stmt.setInt(2, activiteitID);
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();

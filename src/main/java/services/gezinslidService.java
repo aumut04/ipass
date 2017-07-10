@@ -58,8 +58,8 @@ public class gezinslidService {
 		return actDAO.getAlleActiviteitenGezinslid(g);
 	}
 
-	public void verwijderAct(String aNaam) {
-		actDAO.verwijderAct(aNaam);
+	public void verwijderAct(int aID) {
+		actDAO.verwijderAct(aID);
 	}
 
 	public void wijzigActiviteit(Activiteit a, Gezinslid gl, String activiteitnaam) {
@@ -77,6 +77,15 @@ public class gezinslidService {
 	
 	public void koppelActToe(int aID, int bsn) {
 		actDAO.koppelActToe(aID, bsn);
+	}
+	
+	public void wijzigActiviteitGezinslid(int aID, int bsn, String status) {
+		actDAO.wijzigActiviteitGezinslid(aID, bsn, status);
+		
+	}
+	
+	public void verwijderActGL(int aID, int bsn) {
+		actDAO.verwijderActGL(aID, bsn);
 	}
 
 }

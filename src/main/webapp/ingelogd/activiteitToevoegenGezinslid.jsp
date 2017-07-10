@@ -42,7 +42,11 @@
 					<li class="pushy-link"><a
 						href="/ingelogd/activiteitVerwijderen.jsp">Activiteiten verwijderen</a></li>
 					<li class="pushy-link"><a
-						href="/ingelogd/activiteitToevoegenGezinslid.jsp">Activiteiten toevoegen GezinsLid</a></li>						
+						href="/ingelogd/activiteitToevoegenGezinslid.jsp">Activiteiten toevoegen GezinsLid</a></li>	
+					<li class="pushy-link"><a
+						href="/ingelogd/activiteitWijzigGezinslid.jsp">Activiteiten wijzigen GezinsLid</a></li>
+					<li class="pushy-link"><a
+						href="/ingelogd/activiteitVerwijderGezinslid.jsp">Activiteiten verwijderen GezinsLid</a></li>					
 				</ul></li>
 			<li class="pushy-submenu"><a href="/ingelogd/logoutServlet.do">Uitloggen</a>
 			</li>

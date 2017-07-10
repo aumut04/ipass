@@ -15,9 +15,11 @@
 <!-- Pushy CSS -->
 <link rel="stylesheet" href="/css/pushy.css">
 
+
 <!-- jQuery -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
 </head>
 <body>
 	<!-- Pushy Menu -->
@@ -44,7 +46,7 @@
 					<li class="pushy-link"><a
 						href="/ingelogd/activiteitWijzigGezinslid.jsp">Activiteiten wijzigen GezinsLid</a></li>
 					<li class="pushy-link"><a
-						href="/ingelogd/activiteitVerwijderGezinslid.jsp">Activiteiten verwijderen GezinsLid</a></li>
+						href="/ingelogd/activiteitVerwijderGezinslid.jsp">Activiteiten verwijderen GezinsLid</a></li>						
 				</ul></li>
 			<li class="pushy-submenu"><a href="/ingelogd/logoutServlet.do">Uitloggen</a>
 			</li>
@@ -66,34 +68,33 @@
 				}
 			%>
 		</div>
-		<form id="activiteitWijzigen" action="/ingelogd/activiteitServlet.do"
+		<form id="wijziglidAct" action="/ingelogd/activiteitServlet.do"
 			method="post">
-			<input type="hidden" name="optie" value="activiteitWijzigen">
+			<input type="hidden" name="optie" value="wijziglidAct">
 			<table>
 				<tr>
+					<td><select id="bsn" name="bsn">
+								<option value="${loggedGezinslid.BSN}">${loggedGezinslid.gezinslidNaam}</option>
+					</select></td>
+				</tr>
+				<tr>
 					<td><select id="aID" name="aID">
-							<c:forEach var="Activiteit" items="${activiteiten}">
+							<c:forEach var="Activiteit" items="${loggedGezinslid.activiteiten}">
 								<option value="${Activiteit.activiteitID}">${Activiteit.activiteitNaam}</option>
 							</c:forEach>
 					</select></td>
 				</tr>
 				<tr>
-					<td>Naam:</td>
-					<td><input type="text" name="actNaam"></td>
-				</tr>
-				<tr>
-					<td>Omschrijving:</td>
-					<td><input type="text" name="omschrijving"></td>
+					<td>Status:</td>
+					<td><input type="text" name="status"></td>
 				</tr>
 				<tr>
 					<td><input type="submit" value="Wijzigen"></td>
 				</tr>
 			</table>
 		</form>
-	</div>
 
-	<!-- Pushy JS -->
-	<script src="/js/pushy.min.js"></script>
-
+		<!-- Pushy JS -->
+		<script src="/js/pushy.min.js"></script>
 </body>
 </html>

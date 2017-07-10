@@ -66,27 +66,25 @@
 				}
 			%>
 		</div>
-		<form id="activiteitWijzigen" action="/ingelogd/activiteitServlet.do"
+
+		<form id="verwijderActGL" action="/ingelogd/activiteitServlet.do"
 			method="post">
-			<input type="hidden" name="optie" value="activiteitWijzigen">
+			<input type="hidden" name="optie" value="verwijderActGL">
 			<table>
 				<tr>
+					<td><select id="bsn" name="bsn">
+								<option value="${loggedGezinslid.BSN}">${loggedGezinslid.gezinslidNaam}</option>
+					</select></td>
+				</tr>
+				<tr>
 					<td><select id="aID" name="aID">
-							<c:forEach var="Activiteit" items="${activiteiten}">
+							<c:forEach var="Activiteit" items="${loggedGezinslid.activiteiten}">
 								<option value="${Activiteit.activiteitID}">${Activiteit.activiteitNaam}</option>
 							</c:forEach>
 					</select></td>
 				</tr>
 				<tr>
-					<td>Naam:</td>
-					<td><input type="text" name="actNaam"></td>
-				</tr>
-				<tr>
-					<td>Omschrijving:</td>
-					<td><input type="text" name="omschrijving"></td>
-				</tr>
-				<tr>
-					<td><input type="submit" value="Wijzigen"></td>
+					<td><input type="submit" value="Verwijderen"></td>
 				</tr>
 			</table>
 		</form>

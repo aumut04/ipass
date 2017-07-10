@@ -18,6 +18,7 @@ public class activiteitServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String actNaam = req.getParameter("actNaam");
+		String status = req.getParameter("status");
 		String oms = req.getParameter("omschrijving");
 		int aID = 0;
 		try {
@@ -36,7 +37,7 @@ public class activiteitServlet extends HttpServlet {
 		boolean wijzigingSuccess = false;
 
 		if (pType.equals("verwijderAct")) {
-			service.verwijderAct(actNaam);
+			service.verwijderAct(aID);
 			g = service.getAlleActiviteitenGezinslid(g);
 			List<Activiteit> an = service.getAlleActiviteiten();
 			req.getSession().setAttribute("activiteiten", an);
@@ -51,14 +52,14 @@ public class activiteitServlet extends HttpServlet {
 				if (oms.isEmpty() || oms == null) {
 					oms = "(geen)";
 				}
-				Activiteit a = new Activiteit(actNaam, oms);
+				Activiteit a = new Activiteit(aID, actNaam, oms);
 				service.wijzigActiviteit(a, g, actNaam);
 				g = service.getAlleActiviteitenGezinslid(g);
 				List<Activiteit> an = service.getAlleActiviteiten();
 				req.getSession().setAttribute("activiteiten", an);
 				req.getSession().setAttribute("loggedGezinslid", g);
 				wijzigingSuccess = true;
-				e_msgs = e_msgs + "Wijziging opgeslagen<br>";
+				e_msgs = e_msgs + "Activiteit Wijziging opgeslagen<br>";
 			}
 		} else if (pType.equals("voegActToe")) {
 			if (actNaam.isEmpty() || actNaam == null) {
@@ -83,7 +84,28 @@ public class activiteitServlet extends HttpServlet {
 			req.getSession().setAttribute("activiteiten", an);
 			req.getSession().setAttribute("loggedGezinslid", g);
 			wijzigingSuccess = true;
-			e_msgs = e_msgs + "Activiteit toegevoegd<br>";
+			e_msgs = e_msgs + "Activiteit toegevoegd aan gezinslid<br>";
+		} else if (pType.equals("wijziglidAct")) {
+			if (status.isEmpty() || status == null) {
+				e_msgs = e_msgs + "Status ongeldig/niet ingevuld!<br>";
+			} else {
+				service.wijzigActiviteitGezinslid(aID, bsn, status);
+				g = service.getAlleActiviteitenGezinslid(g);
+				List<Activiteit> an = service.getAlleActiviteiten();
+				req.getSession().setAttribute("activiteiten", an);
+				req.getSession().setAttribute("loggedGezinslid", g);
+				wijzigingSuccess = true;
+				e_msgs = e_msgs + "Activiteit gewijzigd van gezinslid<br>";
+			}
+		} else if (pType.equals("verwijderActGL")) {
+			service.verwijderActGL(aID, bsn);
+			g = service.getAlleActiviteitenGezinslid(g);
+			List<Activiteit> an = service.getAlleActiviteiten();
+			req.getSession().setAttribute("activiteiten", an);
+			req.getSession().setAttribute("loggedGezinslid", g);
+			wijzigingSuccess = true;
+			e_msgs = e_msgs + "Activiteit verwijderd van gezinslid<br>";
+
 		}
 
 		RequestDispatcher rd = null;
