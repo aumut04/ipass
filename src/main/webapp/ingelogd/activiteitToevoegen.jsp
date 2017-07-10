@@ -81,13 +81,6 @@
 					<td><input type="text" name="omschrijving"></td>
 				</tr>
 				<tr>
-					<td><select id="bsn" name="bsn">
-							<c:forEach var="Gezinslid" items="${loggedGezin.gezinsLeden}">
-								<option value="${Gezinslid.BSN}">${Gezinslid.gezinslidNaam}</option>
-							</c:forEach>
-					</select></td>
-				</tr>
-				<tr>
 					<td><input type="submit" value="Toevoegen"></td>
 				</tr>
 			</table>
