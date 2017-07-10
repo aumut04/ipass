@@ -39,7 +39,7 @@ public class Gezinslid {
 		gezinsLidID = gID;
 	}
 	
-	private String getWachtwoord() {
+	public String getWachtwoord() {
 		return wachtwoord;
 	}
 	

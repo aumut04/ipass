@@ -39,6 +39,8 @@
 						href="/ingelogd/activiteitWijzigen.jsp">Activiteiten wijzigen</a></li>
 					<li class="pushy-link"><a
 						href="/ingelogd/activiteitVerwijderen.jsp">Activiteiten verwijderen</a></li>
+					<li class="pushy-link"><a
+						href="/ingelogd/activiteitToevoegenGezinslid.jsp">Activiteiten toevoegen GezinsLid</a></li>
 				</ul></li>
 			<li class="pushy-submenu"><a href="/ingelogd/logoutServlet.do">Uitloggen</a>
 			</li>
@@ -60,14 +62,14 @@
 				}
 			%>
 		</div>
-		<form id="verwijderGezinslid" action="/ingelogd/gezinslidServlet.do"
+		<form id="verwijderGezinslid" action="/ingelogd/gezinsServlet.do"
 			method="post">
-			<input type="hidden" name="optie" value="verwijderGezinslid">
+			<input type="hidden" name="optie" value="gezinslidVerwijderen">
 			<table>
 				<tr>
 					<td><select id="bsn" name="bsn">
-							<c:forEach var="Gezinslid" items="${loggedGezinslid.gezinsleden}">
-								<option value="${Gezinslid.bsn}">${Gezinslid.gezinslidNaam}</option>
+							<c:forEach var="Gezinslid" items="${loggedGezin.gezinsLeden}">
+								<option value="${Gezinslid.BSN}">${Gezinslid.gezinslidNaam}</option>
 							</c:forEach>
 					</select></td>
 				</tr>

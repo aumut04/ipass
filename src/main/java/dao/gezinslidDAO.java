@@ -61,11 +61,12 @@ public class gezinslidDAO extends baseDAO {
 
 	public void voegGezinslid(Gezinslid gl, Gezin g) {
 		try (Connection con = super.getConnection()) {
-			String updateString = "INSERT INTO Gezinslid (bsn, gezinslidnaam, fk_gezinID) VALUES (?, ?, ?)";
+			String updateString = "INSERT INTO Gezinslid (bsn, gezinslidnaam, wachtwoord, fk_gezinID) VALUES (?, ?, ?, ?)";
 			PreparedStatement stmt = con.prepareStatement(updateString);
 			stmt.setInt(1, gl.getBSN());
 			stmt.setString(2, gl.getGezinslidNaam());
-			stmt.setInt(3, g.getGezinID());
+			stmt.setString(3, gl.getWachtwoord());
+			stmt.setInt(4, g.getGezinID());
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();
@@ -74,10 +75,10 @@ public class gezinslidDAO extends baseDAO {
 
 	public void wijzigGezinslid(Gezinslid gl) {
 		try (Connection con = super.getConnection()) {
-			String updateString = "UPDATE Gezinslid SET gezinslidnaam= ? WHERE bsn = ?";
+			String updateString = "UPDATE Gezinslid SET gezinslidnaam = ? WHERE bsn = ?";
 			PreparedStatement stmt = con.prepareStatement(updateString);
 			stmt.setString(1, gl.getGezinslidNaam());
-			// stmt.setInt(2, gl.getBSN());
+			stmt.setInt(2, gl.getBSN());
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();

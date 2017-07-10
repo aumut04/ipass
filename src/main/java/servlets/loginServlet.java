@@ -1,6 +1,7 @@
 package servlets;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -40,9 +41,11 @@ public class loginServlet extends HttpServlet {
 			g = service.getAlleActiviteitenGezinslid(g);
 			Gezin gn = service.getGezin(g.getGezinsLidID());
 			gn.setGezinsLeden(service.getAlleGezinsledenGezin(gn.getGezinID()));
+			List<Activiteit> an = service.getAlleActiviteiten();
+			req.getSession().setAttribute("activiteiten", an);
 			Cookie c = new Cookie("gebruikersNaam", BSN);
 			c.setMaxAge(-1);
-			resp.addCookie(c);
+			resp.addCookie(c);			
 			req.getSession().setAttribute("loggedGezinslid", g);
 			req.getSession().setAttribute("loggedGezin", gn);
 			req.getSession().setAttribute("loggedGezinslidBSN", g.getBSN());

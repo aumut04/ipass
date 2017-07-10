@@ -65,6 +65,25 @@ public class activiteitDAO extends baseDAO {
 		}
 		return results;
 	}
+	
+	private ArrayList<Activiteit> selectActiviteiten(String query) {
+		ArrayList<Activiteit> results = new ArrayList<Activiteit>();
+		Activiteit newAct = null;
+		try (Connection con = super.getConnection()) {
+			PreparedStatement stmt = con.prepareStatement(query);
+			ResultSet dbResultSet = stmt.executeQuery();
+			while (dbResultSet.next()) {
+				int activiteitID = dbResultSet.getInt("activiteitID");
+				String activiteitNaam = dbResultSet.getString("activiteitNaam");
+				String omschrijving = dbResultSet.getString("omschrijving");				
+				newAct = new Activiteit(activiteitID, activiteitNaam, omschrijving);
+				results.add(newAct);
+			}
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+		return results;
+	}
 
 	public ArrayList<Activiteit> getAlleActiviteitenGezinslid(int bsn) {
 		return selectActiviteiten(
@@ -72,12 +91,31 @@ public class activiteitDAO extends baseDAO {
 				bsn);
 	}
 
+	
+	public ArrayList<Activiteit> getAlleActiviteiten() {
+		return selectActiviteiten(
+				"SELECT * FROM activiteit");
+	}
+	
 	public void voegActToe(Activiteit a) {
 		try (Connection con = super.getConnection()) {
 			String updateString = "INSERT INTO activiteit (activiteitNaam, omschrijving) VALUES (?, ?)";
 			PreparedStatement stmt = con.prepareStatement(updateString);
 			stmt.setString(1, a.getActiviteitNaam());
 			stmt.setString(2, a.getOmschrijving());
+			stmt.executeUpdate();
+		} catch (SQLException sqle) {
+			sqle.printStackTrace();
+		}
+	}
+	
+	public void koppelActToe(int aID, int bsn) {
+		try (Connection con = super.getConnection()) {
+			String updateString = "INSERT INTO gezinslidactiviteit (fk_bsn, fk_activiteitid, status) VALUES (?, ?, ?)";
+			PreparedStatement stmt = con.prepareStatement(updateString);
+			stmt.setInt(1, bsn);
+			stmt.setInt(2, aID);
+			stmt.setString(3, "Open");
 			stmt.executeUpdate();
 		} catch (SQLException sqle) {
 			sqle.printStackTrace();

@@ -70,5 +70,13 @@ public class gezinslidService {
 	public ArrayList<Gezinslid> getAlleGezinsledenGezin(int gID){
 		return glDAO.getAlleGezinsledenGezin(gID);
 	}
+	
+	public List<Activiteit> getAlleActiviteiten() {
+		return actDAO.getAlleActiviteiten();
+	}
+	
+	public void koppelActToe(int aID, int bsn) {
+		actDAO.koppelActToe(aID, bsn);
+	}
 
 }
