@@ -60,7 +60,7 @@
 				}
 			%>
 		</div>
-		<form id="voegGezinslidToe" action="/ingelogd/gezinslidServlet.do"
+		<form id="voegGezinslidToe" action="/ingelogd/gezinsServlet.do"
 			method="post">
 			<input type="hidden" name="optie" value="voegGezinslidToe">
 			<table>

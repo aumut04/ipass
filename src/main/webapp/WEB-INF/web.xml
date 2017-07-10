@@ -43,6 +43,14 @@
 		<servlet-name>Logout Servlet</servlet-name>
 		<url-pattern>/ingelogd/logoutServlet.do</url-pattern>
 	</servlet-mapping>
+	<servlet>
+		<servlet-name>Gezin Servlet</servlet-name>
+		<servlet-class>servlets.gezinsServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Gezin Servlet</servlet-name>
+		<url-pattern>/ingelogd/gezinsServlet.do</url-pattern>
+	</servlet-mapping>
 	<filter>
 		<filter-name>Secure Filter</filter-name>
 		<filter-class>filter.secureFilter</filter-class>
