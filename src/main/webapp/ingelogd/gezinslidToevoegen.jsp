@@ -62,7 +62,7 @@
 		</div>
 		<form id="voegGezinslidToe" action="/ingelogd/gezinsServlet.do"
 			method="post">
-			<input type="hidden" name="optie" value="voegGezinslidToe">
+			<input type="hidden" name="optie" value="gezinslidToevoegen">
 			<table>
 				<tr>
 					<td>BSN:</td>
